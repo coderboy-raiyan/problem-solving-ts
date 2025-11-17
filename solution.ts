@@ -61,8 +61,20 @@ function getUniqueValues(
   array1: (string | number)[],
   array2: (string | number)[]
 ) {
-  const singleArray = [...array1, ...array2];
-  return [...new Set(singleArray)];
+  let newArr: (string | number)[] = [];
+
+  array1.forEach((item) => {
+    if (!newArr.includes(item)) {
+      newArr.push(item);
+    }
+  });
+  array2.forEach((item) => {
+    if (!newArr.includes(item)) {
+      newArr.push(item);
+    }
+  });
+
+  return newArr;
 }
 
 function calculateTotalPrice(
