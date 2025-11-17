@@ -61,20 +61,21 @@ function getUniqueValues(
   array1: (string | number)[],
   array2: (string | number)[]
 ) {
-  let newArr: (string | number)[] = [];
+  let obj: { [key in string]: string | number } = {};
 
-  array1.forEach((item) => {
-    if (!newArr.includes(item)) {
-      newArr.push(item);
+  for (let i = 0; i < array1.length; i++) {
+    let element = array1[i] as string;
+    if (!obj[element]) {
+      obj[element] = array1[i]!;
     }
-  });
-  array2.forEach((item) => {
-    if (!newArr.includes(item)) {
-      newArr.push(item);
+  }
+  for (let i = 0; i < array2.length; i++) {
+    let element = array2[i] as string;
+    if (!obj[element]) {
+      obj[element] = array2[i]!;
     }
-  });
-
-  return newArr;
+  }
+  return Object.values(obj);
 }
 
 function calculateTotalPrice(
